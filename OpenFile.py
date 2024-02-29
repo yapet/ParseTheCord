@@ -31,9 +31,9 @@ def save_file():
             file.write(text)
  
 open_button = ttk.Button(text="Открыть файл", command=open_file)
-open_button.grid(column=0, row=1, sticky=NSEW, padx=10, pady=10)
+open_button.grid(column=1, row=1, sticky=E, padx=10, pady=10)
  
-save_button = ttk.Button(text="Сохранить файл", command=save_file)
-save_button.grid(column=1, row=1, sticky=NSEW, padx=10, pady=10)
+#save_button = ttk.Button(text="Сохранить файл", command=save_file)
+#save_button.grid(column=1, row=1, sticky=NSEW, padx=10, pady=10)
  
 root.mainloop()
