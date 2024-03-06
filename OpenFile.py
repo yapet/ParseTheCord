@@ -26,10 +26,13 @@ def open_file():
 # сохраняем текст из текстового поля в файл
 def replace_tags():
     tags = {"<b>":"", "</b>":"","<br>":"","</br>":" ", "<br />":" ","<font color=darkred>":"", "<font color=maroon>":"", "</font>":""}
+    text = text_editor.get("1.0", END)
     for item in tags:
-        text
         print("*"+tags[item]+"*")
-        text = text.replace(item, tags[item]) 
+        text = text.replace(item, tags[item])
+    text_editor.delete("1.0", END)
+    text_editor.insert("1.0", text)
+
     print(text)
     
 
