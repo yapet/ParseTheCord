@@ -12,7 +12,8 @@ root.grid_columnconfigure(index=1, weight=1)
  
 text_editor = Text()
 text_editor.grid(column=0, columnspan=2, row=0, sticky=NSEW)
- 
+text = ""
+
 # открываем файл в текстовое поле
 def open_file():
     filepath = filedialog.askopenfilename()
@@ -21,7 +22,20 @@ def open_file():
             text =file.read()
             text_editor.delete("1.0", END)
             text_editor.insert("1.0", text)
- 
+        
+# сохраняем текст из текстового поля в файл
+def replace_tags():
+    tags = {"<b>":"", "</b>":"","<br>":"","</br>":" ", "<br />":" ","<font color=darkred>":"", "<font color=maroon>":"", "</font>":""}
+    text = text_editor.get("1.0", END)
+    for item in tags:
+        print("*"+tags[item]+"*")
+        text = text.replace(item, tags[item])
+    text_editor.delete("1.0", END)
+    text_editor.insert("1.0", text)
+
+    print(text)
+    
+
 # сохраняем текст из текстового поля в файл
 def save_file():
     filepath = filedialog.asksaveasfilename()
@@ -31,9 +45,12 @@ def save_file():
             file.write(text)
  
 open_button = ttk.Button(text="Открыть файл", command=open_file)
-open_button.grid(column=1, row=1, sticky=E, padx=10, pady=10)
+open_button.grid(column=0, row=1, sticky=NSEW, padx=10, pady=10)
  
-#save_button = ttk.Button(text="Сохранить файл", command=save_file)
-#save_button.grid(column=1, row=1, sticky=NSEW, padx=10, pady=10)
+save_button = ttk.Button(text="Убрать теги", command=replace_tags)
+save_button.grid(column=1, row=1, sticky=NSEW, padx=10, pady=10)
  
+save_button = ttk.Button(text="Сохранить файл", command=save_file)
+save_button.grid(column=2, row=1, sticky=NSEW, padx=10, pady=10)
+
 root.mainloop()
